@@ -1,0 +1,44 @@
+<mat-card>
+    <div>
+        <mat-form-field>
+            <mat-label>
+                Marca
+            </mat-label>
+            <input matInput [(ngModel)]="brandFilter">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>
+                Prezzo max €/giorno
+            </mat-label>
+            <input matInput type="number" [(ngModel)]="maxPrice">
+        </mat-form-field>
+    </div>
+</mat-card>
+
+<div class="cards-container">
+    @for(car of filteredCars; track $index)
+    {
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>{{ car.brand }} {{ car.model }}</mat-card-title>
+            <mat-card-subtitle>€{{ car.priceDay }}/giorno</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            @if(car.available)
+            {
+                <p> disponibile </p>
+            }
+            @else
+            {
+                <p style="color: red;">Non disponibile</p>
+            }
+        </mat-card-content>
+
+        <mat-card-actions>
+            <button mat-raised-button color="primary" [disabled]="!car.available" (click)="goToBooking(car.id)">
+                Prenota
+            </button>
+        </mat-card-actions>
+    </mat-card>
+    }
+</div>

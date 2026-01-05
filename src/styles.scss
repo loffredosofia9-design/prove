@@ -1,1 +1,49 @@
-/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+
+/* Palette di base */
+$orange-primary: mat.define-palette(mat.$deep-orange-palette);
+$red-primary: mat.define-palette(mat.$red-palette);
+$blue-primary: mat.define-palette(mat.$blue-palette);
+
+$accent-palette: mat.define-palette(mat.$green-palette);
+$warn-palette: mat.define-palette(mat.$red-palette);
+
+/* Tema arancione */
+$orange-theme: mat.define-light-theme((
+  color: (
+    primary: $orange-primary,
+    accent: $accent-palette,
+    warn: $warn-palette,
+  )
+));
+
+/* Tema rosso */
+$red-theme: mat.define-light-theme((
+  color: (
+    primary: $red-primary,
+    accent: $accent-palette,
+    warn: $warn-palette,
+  )
+));
+
+/* Tema blu */
+$blue-theme: mat.define-light-theme((
+  color: (
+    primary: $blue-primary,
+    accent: $accent-palette,
+    warn: $warn-palette,
+  )
+));
+
+/* Applica tema di default */
+@include mat.all-component-themes($orange-theme);
+
+/* Classi per i temi */
+.orange-theme { @include mat.all-component-colors($orange-theme); }
+.red-theme { @include mat.all-component-colors($red-theme); }
+.blue-theme { @include mat.all-component-colors($blue-theme); }
+
+body {
+  margin: 0;
+  font-family: Roboto, sans-serif;
+}
